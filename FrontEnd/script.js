@@ -1,4 +1,5 @@
-async function getAllProjets() {
+/*Affichage des projets dynamique, parcourt tableau avec les données et concaténation des données dans nouvelles balises html*/
+async function getProjets(param) {
   const response = await fetch(`http://localhost:5678/api/works`);
   const data = await response.json();
 
@@ -11,15 +12,18 @@ async function getAllProjets() {
     console.log(data[i]["title"]);
     console.log(data[i]["imageUrl"]);
 
-    texte += `
-    <figure>
-            <img src="${data[i]["imageURL"]}" alt="${data[i]["title"]}" />
-            <figcaption>${data[i]["title"]}</figcaption>
-    </figure>
-    `;
+    /*Afficher le tri directement + indiqué*/
+    if (param == data[i]["category"]["id"] || param == "0") {
+      texte += `
+      <figure>
+              <img src="${data[i]["imageUrl"]}" alt="${data[i]["title"]}" />
+              <figcaption>${data[i]["title"]}</figcaption>
+      </figure>
+      `;
+    }
   }
 
   gallery.innerHTML = texte;
 }
 
-getAllProjets();
+getProjets("0");
