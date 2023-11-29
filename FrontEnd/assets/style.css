@@ -318,6 +318,16 @@ html {
   font-size: 15px;
 }
 
+/*AFFICHAGE MESSAGE ERREUR*/
+#errorText404,
+#errorText401,
+#errorText {
+  margin-top: 20px;
+  font-size: 18px;
+  display: none;
+  color: #b1663c;
+}
+
 /*footer {
   position: absolute;
   bottom: 0;

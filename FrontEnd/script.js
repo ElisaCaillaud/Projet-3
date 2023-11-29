@@ -26,4 +26,18 @@ async function getProjets(param) {
   gallery.innerHTML = texte;
 }
 
-getProjets("0");
+function checkAuthentification() {
+  const modifBtn = document.getElementById("modif");
+  modifBtn.style.display = "none";
+  const token = window.localStorage.getItem("token");
+
+  if (token != null) {
+    modif.style.display = "block";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  getProjets("0");
+
+  checkAuthentification();
+});
