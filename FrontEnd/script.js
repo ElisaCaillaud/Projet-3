@@ -25,7 +25,7 @@ async function getProjets(param) {
 
   gallery.innerHTML = texte;
 }
-
+//afficher la bonne page si l'utilisateur est connecté
 function checkAuthentification() {
   const modifBtn = document.getElementById("modif");
   modifBtn.style.display = "none";
@@ -35,7 +35,7 @@ function checkAuthentification() {
     modif.style.display = "block";
   }
 }
-
+//Lancement fonction
 document.addEventListener("DOMContentLoaded", function () {
   getProjets("0");
 
