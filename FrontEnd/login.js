@@ -31,7 +31,7 @@ async function ajoutListenerEnvoyerLogin() {
     const status404 = document.getElementById("errorText404");
     const statusError = document.getElementById("errorText");
 
-    //Récupération du token si login/mdp OK sinon erreur
+    //Récupération du token si login/mdp OK sinon erreur + message erreur
     if (statusCode === 200) {
       //alert(data["token"]);
       window.localStorage.setItem("token", data["token"]);

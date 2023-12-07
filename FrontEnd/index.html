@@ -55,13 +55,55 @@
         </article>
       </section>
       <section id="portfolio">
-        <div id="modif">
-          <i class="fa-solid fa-pen-to-square" style="color: #000000"></i>
-          <p>Modifier</p>
+        <div id="title-projets">
+          <h2>Mes Projets</h2>
+          <div id="modif" class="modif">
+            <i class="fa-solid fa-pen-to-square" style="color: #000000"></i>
+            <p>Modifier</p>
+          </div>
         </div>
-        <h2>Mes Projets</h2>
+        <aside id="modal1" class="modal" style="display: none">
+          <div class="modal-wrapper">
+            <div class="js-modal-close">
+              <i class="fa-solid fa-xmark fa-xl" style="color: #000000"></i>
+            </div>
+            <i
+              class="fa-solid fa-arrow-left fa-xl"
+              id="arrowLeft"
+              style="color: #000000; display: none"
+            ></i>
+            <div class="afficherGalerie">
+              <h3>Galerie photo</h3>
+              <div class="galleryModal"></div>
+              <hr class="separator" />
+              <a href="#" id="addPhoto">Ajouter une photo</a>
+            </div>
+            <div class="ajoutPhoto" style="display: none">
+              <h3>Ajout photo</h3>
+              <form action="#" method="post" class="ajoutPhotoForm">
+                <div class="bleuAjoutPhoto">
+                  <i class="fa-regular fa-image" style="color: #cbd6dc"></i>
+                  <input
+                    type="file"
+                    id="newPhoto"
+                    name="newPhoto"
+                    accept="image/png, image/jpeg"
+                    value="+ Ajouter photo"
+                  />
+                  <p>jpg, png : 4mo max</p>
+                </div>
+                <input type="text" id="titre" required />
+                <label for="titre"><b>Titre</b></label>
+                <label for="categoryAddPhoto"></label>
+                <select name="category" id="categoryAddPhoto"></select>
+                <hr class="separator" />
+                <button type="submit" class="btnPhoto">Valider</button>
+              </form>
+            </div>
+          </div>
+        </aside>
         <div class="button-filter">
-          <!--Filtres de tri avec ONCLICK-->
+          <!-------Filtres de tri avec ONCLICK------------->
           <a id="button1" onclick="getProjets('0')">Tout</a>
           <a id="button2" onclick="getProjets('1')">Objets</a>
           <a id="button3" onclick="getProjets('2')">Appartements</a>

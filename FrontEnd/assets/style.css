@@ -191,6 +191,20 @@ nav li a:hover {
 li:hover {
   color: #b1663c;
 }
+
+#title-projets {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.modif {
+  display: flex !important;
+  margin-left: 30px;
+  cursor: pointer;
+  gap: 5px;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -230,7 +244,7 @@ li:hover {
   width: 100%;
 }
 
-/*BOUTONS sur toutes les pages*/
+/******BOUTONS sur toutes les pages********/
 
 .button-filter {
   display: flex;
@@ -318,7 +332,7 @@ html {
   font-size: 15px;
 }
 
-/*AFFICHAGE MESSAGE ERREUR*/
+/*******AFFICHAGE MESSAGE ERREUR********/
 #errorText404,
 #errorText401,
 #errorText {
@@ -373,6 +387,97 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper {
+  border-radius: 10px;
+  overflow: auto;
+  background-color: white;
+  width: 600px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
+  padding: 35px;
+  position: relative;
+}
+
+.js-modal-close {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+}
+
+#arrowLeft {
+  cursor: pointer;
+}
+
+h3 {
+  font-family: "Work Sans";
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.afficherGalerie {
+  padding-top: 40px;
+}
+
+.galleryModal {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 0 24px 50px 24px;
+}
+
+.galleryModal img {
+  width: 100%;
+}
+
+.itemGallery {
+  height: 115px;
+  background-size: cover;
+  padding: 10px 5px;
+  text-align: end;
+}
+
+.removeGallery {
+  border-radius: 2px;
+  background-color: black;
+  padding: 4px 7px;
+  cursor: pointer;
+}
+
+#addPhoto {
+  font-family: "Syne";
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 30px 10px 30px;
+  background-color: #1d6154;
+  border: none;
+  position: relative;
+  left: 30%;
+  border-radius: 20px;
+  color: white;
+}
+
+.bleuAjoutPhoto {
+  background-color: #e8f1f6;
+}
+
+.separator {
+  margin-bottom: 50px;
+  width: 90%;
 }
 
 footer nav ul {
