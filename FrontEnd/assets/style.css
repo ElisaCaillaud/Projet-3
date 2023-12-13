@@ -302,7 +302,9 @@ html {
   font: inherit;
 }
 
-.formConnexion input {
+.formConnexion input,
+#inputAjout input,
+#inputAjout select {
   border: none;
   height: 45px;
   box-shadow: -1px 3px 20px 2px rgba(0, 0, 0, 0.1);
@@ -471,8 +473,73 @@ h3 {
   color: white;
 }
 
+.ajoutPhoto {
+  text-align: center;
+}
+
 .bleuAjoutPhoto {
+  padding: 20px;
   background-color: #e8f1f6;
+  height: 145px;
+  width: 390px;
+  margin-left: 85px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.fa-image:before {
+  position: relative;
+  top: -15px;
+}
+
+.fa-2xl {
+  margin-bottom: 35px;
+  font-size: 5em;
+}
+
+#textJpg {
+  font-size: 10px;
+}
+
+#btnAjouter {
+  background-color: #cbd6dc;
+  padding: 10px 35px;
+  color: #306685;
+  border-radius: 20px;
+  position: absolute;
+  top: 178px;
+  left: 37%;
+}
+
+#inputAjout {
+  display: grid;
+  text-align: left;
+  padding: 25px 85px 0 88px;
+}
+
+#inputAjout p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.btnPhoto {
+  cursor: pointer;
+  font-family: "Syne";
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  padding: 10px 80px 10px 80px;
+  border-radius: 20px;
+}
+
+#inputAjout select,
+#inputAjout input {
+  font-family: "Work Sans";
+  font-size: 14px;
+  -webkit-appearance: none;
+  color: grey;
+  padding-left: 10px;
 }
 
 .separator {

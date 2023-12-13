@@ -67,35 +67,53 @@
             <div class="js-modal-close">
               <i class="fa-solid fa-xmark fa-xl" style="color: #000000"></i>
             </div>
+            <!--FLECHE HAUT MODAL GAUCHE POUR NAVIGUER-->
             <i
               class="fa-solid fa-arrow-left fa-xl"
               id="arrowLeft"
               style="color: #000000; display: none"
             ></i>
-            <div class="afficherGalerie">
+            <!--CONTENU MODAL 1-->
+            <div class="afficherGalerie" style="display: block">
               <h3>Galerie photo</h3>
               <div class="galleryModal"></div>
               <hr class="separator" />
               <a href="#" id="addPhoto">Ajouter une photo</a>
             </div>
+            <!--CONTENU MODAL 2-->
             <div class="ajoutPhoto" style="display: none">
               <h3>Ajout photo</h3>
               <form action="#" method="post" class="ajoutPhotoForm">
                 <div class="bleuAjoutPhoto">
-                  <i class="fa-regular fa-image" style="color: #cbd6dc"></i>
+                  <i
+                    class="fa-regular fa-image fa-2xl"
+                    style="color: #cbd6dc"
+                  ></i>
                   <input
                     type="file"
                     id="newPhoto"
+                    class="newPhoto"
                     name="newPhoto"
                     accept="image/png, image/jpeg"
-                    value="+ Ajouter photo"
+                    value=""
+                    style="
+                      z-index: 2;
+                      position: relative;
+                      opacity: 0;
+                      cursor: pointer;
+                      font-size: 8px;
+                      height: 30px;
+                    "
                   />
-                  <p>jpg, png : 4mo max</p>
+                  <p id="btnAjouter">+ Ajouter photo</p>
+                  <p id="textJpg">jpg, png : 4mo max</p>
                 </div>
-                <input type="text" id="titre" required />
-                <label for="titre"><b>Titre</b></label>
-                <label for="categoryAddPhoto"></label>
-                <select name="category" id="categoryAddPhoto"></select>
+                <div id="inputAjout">
+                  <label for="titre"><p>Titre</p></label>
+                  <input type="text" id="titre" required />
+                  <label for="categoryAddPhoto"><p>Catégorie</p></label>
+                  <select name="category" id="categoryAddPhoto"></select>
+                </div>
                 <hr class="separator" />
                 <button type="submit" class="btnPhoto">Valider</button>
               </form>

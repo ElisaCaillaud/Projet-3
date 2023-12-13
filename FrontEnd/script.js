@@ -12,7 +12,8 @@ async function getProjets(param) {
     console.log(data[i]["title"]);
     console.log(data[i]["imageUrl"]);
 
-    /*Afficher le tri directement + indiqué*/
+    /*Afficher le tri directement + indiqué, on parcourt le tableau de l'API
+    et on l'injecte dans le html avec une nouvelle balise*/
     if (param == data[i]["category"]["id"] || param == "0") {
       texte += `
       <figure>
@@ -24,6 +25,26 @@ async function getProjets(param) {
   }
 
   gallery.innerHTML = texte;
+}
+/*Affichage des catégories dans la liste deroulante de la modal ajoutPhoto*/
+async function getCategories() {
+  const response = await fetch(`http://localhost:5678/api/categories`);
+  const data = await response.json();
+
+  var select = document.querySelector("#categoryAddPhoto");
+  var textSelect = "";
+
+  for (let i = 0; i < data.length; i++) {
+    console.log(i);
+    console.log(data[i]["id"]);
+    console.log(data[i]["name"]);
+
+    /*Ajouter les categories*/
+    textSelect += `
+      <option value="${data[i]["id"]}">${data[i]["name"]}</option>
+      `;
+  }
+  select.innerHTML = textSelect;
 }
 
 /*Affichage des projets dynamiques SUR LA MODAL*/
@@ -65,7 +86,7 @@ async function deleteProject(id) {
   getProjets("0");
 }
 
-//afficher la bonne page si l'utilisateur est connecté
+//afficher de la bonne page ACCUEIL si l'utilisateur est connecté
 function checkAuthentification() {
   const modifBtn = document.getElementById("modif");
   modifBtn.style.display = "none";
@@ -82,6 +103,7 @@ function checkAuthentification() {
 document.addEventListener("DOMContentLoaded", function () {
   getProjets("0");
   getProjetsModal();
+  getCategories();
 
   checkAuthentification();
   /*Event d'apparition et de disparition de la modal au clic*/
@@ -104,5 +126,23 @@ document.addEventListener("DOMContentLoaded", function () {
   jsModal.addEventListener("click", function () {
     // Ouvrir la modal
     modal.style.display = "flex";
+  });
+
+  var afficherGalerieJS = document.querySelector(".afficherGalerie");
+  var ajoutPhotoJS = document.querySelector(".ajoutPhoto");
+  var btnAjoutJS = document.querySelector("#addPhoto");
+  var flecheRetour = document.querySelector("#arrowLeft");
+
+  btnAjoutJS.addEventListener("click", function () {
+    //console.log("clique");
+    afficherGalerieJS.style.display = "none";
+    ajoutPhotoJS.style.display = "block";
+    flecheRetour.style.display = "block";
+  });
+
+  flecheRetour.addEventListener("click", function () {
+    afficherGalerieJS.style.display = "block";
+    ajoutPhotoJS.style.display = "none";
+    flecheRetour.style.display = "none";
   });
 });
