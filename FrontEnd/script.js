@@ -99,7 +99,7 @@ function checkAuthentification() {
 
   //PROBLEME : le token reste toujours meme si je suis partie depuis la derniere fois
   //donc le bouton modifier est toujours apparent
-  if (token != null) {
+  if (token != "") {
     modifBtn.style.display = "block";
   }
 }
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
   getCategories();
   checkAuthentification();
 
-  var jsModal = document.getElementById("modif");
+  var jsModal = document.getElementById("modif"); //Btn modifier
   var modal = document.getElementById("modal1"); //la modale entiere, qui couvre la fenetre
   var modalWrapper = document.querySelector(".modal-wrapper"); //la fenetre modale
   var closeModalButton = document.querySelector(".js-modal-close");
@@ -131,6 +131,21 @@ document.addEventListener("DOMContentLoaded", function () {
   var ajoutPhotoJS = document.querySelector(".ajoutPhoto");
   var btnAjoutJS = document.querySelector("#addPhoto");
   var flecheRetour = document.querySelector("#arrowLeft");
+
+  var imageUpload = document.getElementById("newPhoto");
+  var imagePreview = document.getElementById("imagePreview");
+
+  imageUpload.addEventListener("change", function () {
+    var fileImage = event.target.files[0];
+    if (fileImage) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = "block";
+      };
+      reader.readAsDataURL(fileImage);
+    }
+  });
 
   btnAjoutJS.addEventListener("click", function () {
     //console.log("clique");
@@ -225,27 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
           : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
 
       /*Actualisation des images en dynamique lors de l'ajout*/
-      afficherImage(inputFile);
       getProjetsModal();
       getProjets("0");
     };
 
     request.send(formData);
   });
-
-  /*****Affichage de l'image ajoutée au submit dans le cadre bleu*********/
-  function afficherImage(imageFile) {
-    /*Créer balise img + selectionner le file + createObjectURl créer un string
-    qui contient l'URL*/
-    var imageElement = document.createElement("img");
-    var inputFile = document.querySelector(".newPhoto").files[0];
-
-    imageElement.src = URL.createObjectURL(inputFile);
-
-    var imageContainer = document.querySelector(".bleuAjoutPhoto");
-
-    /*Ajouter img en balise enfant du bloc bleu*/
-    imageContainer.innerHTML = "";
-    imageContainer.appendChild(imageElement);
-  }
 });
