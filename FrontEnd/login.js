@@ -35,6 +35,7 @@ async function ajoutListenerEnvoyerLogin() {
     if (statusCode === 200) {
       //alert(data["token"]);
       window.localStorage.setItem("token", data["token"]);
+      window.localStorage.setItem("userId", data["userId"]);
       window.location.href = "index.html";
     } else if (statusCode === 401) {
       status401.style.display = "block";

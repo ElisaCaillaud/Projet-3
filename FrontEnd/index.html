@@ -93,7 +93,7 @@
                     type="file"
                     id="newPhoto"
                     class="newPhoto"
-                    name="newPhoto"
+                    name="imageUrl"
                     accept="image/png, image/jpeg"
                     value=""
                     style="
@@ -104,19 +104,27 @@
                       font-size: 8px;
                       height: 30px;
                     "
+                    required
                   />
+                  <!--CHAMPS REQUIRED-->
                   <p id="btnAjouter">+ Ajouter photo</p>
                   <p id="textJpg">jpg, png : 4mo max</p>
                 </div>
                 <div id="inputAjout">
                   <label for="titre"><p>Titre</p></label>
-                  <input type="text" id="titre" required />
+                  <input type="text" id="titre" name="title" required />
                   <label for="categoryAddPhoto"><p>Catégorie</p></label>
-                  <select name="category" id="categoryAddPhoto"></select>
+                  <select
+                    name="categoryId"
+                    id="categoryAddPhoto"
+                    required
+                  ></select>
                 </div>
                 <hr class="separator" />
-                <button type="submit" class="btnPhoto">Valider</button>
+                <button type="submit" class="btnPhoto" disabled>Valider</button>
               </form>
+              <div id="output"></div>
+              <!--AFFICHER MESSAGE ERREUR AJOUT IMG-->
             </div>
           </div>
         </aside>
@@ -141,6 +149,7 @@
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
           <input type="submit" value="Envoyer" />
         </form>
+        <div id="output"></div>
       </section>
     </main>
 
