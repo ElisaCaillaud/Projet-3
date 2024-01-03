@@ -270,12 +270,12 @@ document.addEventListener("DOMContentLoaded", function () {
           ? "Image ajoutée !"
           : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
 
-      if (request.status === 201) {
+      /*if (request.status === 201) {
         // Réinitialiser chaque champ du formulaire après l'envoi réussi
         document.querySelector(".newPhoto").value = "";
         document.querySelector("#titre").value = "";
         document.querySelector("#categoryAddPhoto").value = "";
-      }
+      }*/
 
       /*Actualisation des images en dynamique lors de l'ajout*/
       getProjetsModal();
