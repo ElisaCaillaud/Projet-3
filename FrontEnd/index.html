@@ -25,7 +25,8 @@
         <ul>
           <li>projets</li>
           <li>contact</li>
-          <li><a href="login.html">login</a></li>
+          <li><a href="login.html" class="homeLogin">login</a></li>
+          <li><a href="#" class="homeLogout">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -87,7 +88,8 @@
                 <div class="bleuAjoutPhoto">
                   <i
                     class="fa-regular fa-image fa-2xl"
-                    style="color: #cbd6dc"
+                    style="color: #cbd6dc; display: block"
+                    id="iconeImage"
                   ></i>
                   <label for="imageUrl"></label>
                   <input
@@ -107,10 +109,11 @@
                     "
                     required
                   />
+                  <!--IMAGE APPARITION LORS DE L'AJOUT D'UNE NOUVELLE PHOTO DANS MODALE-->
                   <img src="#" id="imagePreview" />
                   <!--CHAMPS REQUIRED-->
-                  <p id="btnAjouter">+ Ajouter photo</p>
-                  <p id="textJpg">jpg, png : 4mo max</p>
+                  <p id="btnAjouter" style="display: block">+ Ajouter photo</p>
+                  <p id="textJpg" style="display: block">jpg, png : 4mo max</p>
                 </div>
                 <div id="inputAjout">
                   <label for="titre"><p>Titre</p></label>

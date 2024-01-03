@@ -93,14 +93,20 @@ async function deleteProject(id) {
 
 /******Affichage de la bonne page ACCUEIL si l'utilisateur est connecté*****/
 function checkAuthentification() {
-  const modifBtn = document.getElementById("modif");
-  modifBtn.style.display = "none";
   const token = window.localStorage.getItem("token");
+  const loginJsHome = document.querySelector(".homeLogin");
+  const logoutJsHome = document.querySelector(".homeLogout");
+  const modifBtn = document.querySelector(".modif");
 
-  //PROBLEME : le token reste toujours meme si je suis partie depuis la derniere fois
-  //donc le bouton modifier est toujours apparent
-  if (token != "") {
-    modifBtn.style.display = "block";
+  /*si le token est ok, on affiche les boutons*/
+  if (token) {
+    modifBtn.style.display = "flex";
+    loginJsHome.style.display = "none";
+    logoutJsHome.style.display = "inline";
+  } else {
+    modifBtn.style.display = "none";
+    loginJsHome.style.display = "inline";
+    logoutJsHome.style.display = "none";
   }
 }
 
@@ -111,19 +117,37 @@ document.addEventListener("DOMContentLoaded", function () {
   getCategories();
   checkAuthentification();
 
-  var jsModal = document.getElementById("modif"); //Btn modifier
-  var modal = document.getElementById("modal1"); //la modale entiere, qui couvre la fenetre
-  var modalWrapper = document.querySelector(".modal-wrapper"); //la fenetre modale
-  var closeModalButton = document.querySelector(".js-modal-close");
-
-  /*****FERMER MODALE*****/
-  closeModalButton.addEventListener("click", function () {
-    modal.style.display = "none";
+  /*Event pour deconnexion au click de logout*/
+  const logoutJsHome = document.querySelector(".homeLogout");
+  logoutJsHome.addEventListener("click", function () {
+    window.localStorage.removeItem("token");
+    window.location.href = "index.html";
   });
 
-  /*****OUVRIR MODALE******/
-  jsModal.addEventListener("click", function () {
+  var jsModal = document.getElementById("modif"); // Btn modifier
+  var modal = document.getElementById("modal1"); // la modale entière, qui couvre la fenêtre
+  var closeModalButton = document.querySelector(".js-modal-close");
+  var modalContenu = document.querySelector(".modal-wrapper"); // corps de la modale
+
+  /*****OUVRIR MODALE*****/
+  jsModal.addEventListener("click", function (event) {
+    event.stopPropagation(); // Empêche la propagation du clic pour éviter la fermeture immédiate
     modal.style.display = "flex";
+  });
+
+  /*****FERMER MODALE*****/
+  /*Verifier que le clic est en dehors de la modale, si oui on ferme*/
+  document.addEventListener("click", function (event) {
+    var isClickInsideModal = modalContenu.contains(event.target);
+    if (!isClickInsideModal) {
+      modal.style.display = "none";
+    }
+  });
+
+  /*fermeture avec le bouton*/
+  closeModalButton.addEventListener("click", function (event) {
+    event.stopPropagation();
+    modal.style.display = "none";
   });
 
   /******AFFICHER DEUXIEME FENETRE MODALE******/
@@ -132,21 +156,29 @@ document.addEventListener("DOMContentLoaded", function () {
   var btnAjoutJS = document.querySelector("#addPhoto");
   var flecheRetour = document.querySelector("#arrowLeft");
 
+  /*Afficher une preview de la nouvelle image ajoutée dans la modale en miniature*/
   var imageUpload = document.getElementById("newPhoto");
   var imagePreview = document.getElementById("imagePreview");
-
+  /*affichage avec le file reader*/
   imageUpload.addEventListener("change", function () {
+    var hideBlocImg = document.getElementById("iconeImage");
+    var hideBlocBtn = document.getElementById("btnAjouter");
+    var hideBlocTxt = document.getElementById("textJpg");
     var fileImage = event.target.files[0];
     if (fileImage) {
       var reader = new FileReader();
       reader.onload = function (event) {
         imagePreview.src = event.target.result;
-        imagePreview.style.display = "block";
+        imagePreview.style.display = "block"; //masquer les autres boutons
+        hideBlocImg.style.display = "none";
+        hideBlocBtn.style.display = "none";
+        hideBlocTxt.style.display = "none";
       };
       reader.readAsDataURL(fileImage);
     }
   });
 
+  /*affichage deuxieme modale et retour arriere avec fleche*/
   btnAjoutJS.addEventListener("click", function () {
     //console.log("clique");
     afficherGalerieJS.style.display = "none";
@@ -168,8 +200,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#categoryAddPhoto"),
   ];
 
-  /*Parcourir le tableau a chaque fois pour reverifier a chaque champs tous 
-  les autres champs*/
+  /*Parcourir le tableau a chaque fois pour reverifier a chaque champs que tous 
+  les autres champs sont remplis*/
   inputArray.forEach((element) => {
     element.addEventListener("focusout", function (event) {
       var vide = false;
@@ -178,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
           vide = true;
         }
       });
-      /*Activer ou non le bouton*/
+      /*Activer ou non le bouton du formulaire*/
       var btnPhoto = document.querySelector(".btnPhoto");
       if (vide) {
         btnPhoto.setAttribute("disabled", "");
@@ -233,11 +265,17 @@ document.addEventListener("DOMContentLoaded", function () {
     request.open("POST", "http://localhost:5678/api/works", true);
     request.setRequestHeader("Authorization", `Bearer ${token}`);
     request.onload = (event) => {
-      /*Gestion message erreur*/
       output.innerHTML =
         request.status === 201
           ? "Image ajoutée !"
           : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
+
+      if (request.status === 201) {
+        // Réinitialiser chaque champ du formulaire après l'envoi réussi
+        document.querySelector(".newPhoto").value = "";
+        document.querySelector("#titre").value = "";
+        document.querySelector("#categoryAddPhoto").value = "";
+      }
 
       /*Actualisation des images en dynamique lors de l'ajout*/
       getProjetsModal();

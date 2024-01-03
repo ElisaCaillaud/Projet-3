@@ -199,7 +199,7 @@ li:hover {
 }
 
 .modif {
-  display: flex !important;
+  display: flex;
   margin-left: 30px;
   cursor: pointer;
   gap: 5px;
@@ -346,10 +346,23 @@ html {
   color: #b1663c;
 }
 
-/*footer {
+#footerLogin {
   position: absolute;
   bottom: 0;
-}*/
+  right: 0;
+  background-color: white;
+  width: 100%;
+}
+
+#footerLogin li {
+  position: relative;
+  top: -6px;
+}
+
+footer {
+  height: 50px;
+  background-color: white;
+}
 
 #contact {
   width: 50%;
@@ -479,6 +492,12 @@ h3 {
   text-align: center;
 }
 
+#imagePreview {
+  position: relative;
+  display: none;
+  bottom: 14px;
+}
+
 .bleuAjoutPhoto {
   padding: 20px;
   background-color: #e8f1f6;
@@ -566,4 +585,8 @@ footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
+}
+
+footer nav li:mot(#mentionLegale) {
+  padding-top: 17px;
 }

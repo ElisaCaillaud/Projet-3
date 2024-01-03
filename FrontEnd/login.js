@@ -1,39 +1,37 @@
-//Fonction asynchrone pour Login
+// Fonction asynchrone pour Login
 async function ajoutListenerEnvoyerLogin() {
-  //séléction du formulaire
+  //sélection du formulaire
   const formLogin = document.querySelector(".formConnexion");
 
   //Ajout event au clic du btn submit
   formLogin.addEventListener("submit", async function (event) {
     event.preventDefault();
-    //alert("Ok");
-    //Récupération des bonnes données html
+
+    /*objet login avec mail et mdp*/
     const login = {
       email: document.getElementById("email").value,
       password: document.getElementById("password").value,
     };
-    //Transformation en string JSON pour le fetch qui ne lit que du string
+
+    /*transformation en JSON*/
     const loginJson = JSON.stringify(login);
-    //fetch pour envoyer les données de login
+
+    /*requete serveur*/
     const response = await fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: loginJson,
     });
-    //Réponse
-    const data = await response.json();
 
-    //Récupérer statuts code, 404, 200 ou 401
+    const data = await response.json();
     const statusCode = response.status;
 
-    //Système message d'erreur
     const status401 = document.getElementById("errorText401");
     const status404 = document.getElementById("errorText404");
     const statusError = document.getElementById("errorText");
 
-    //Récupération du token si login/mdp OK sinon erreur + message erreur
+    /*messages d'erreur/ validation et redirection*/
     if (statusCode === 200) {
-      //alert(data["token"]);
       window.localStorage.setItem("token", data["token"]);
       window.localStorage.setItem("userId", data["userId"]);
       window.location.href = "index.html";
@@ -53,7 +51,11 @@ async function ajoutListenerEnvoyerLogin() {
   });
 }
 
-//Fonction lancée après chargement du DOM
+// Fonction lancée après chargement du DOM
 document.addEventListener("DOMContentLoaded", function () {
   ajoutListenerEnvoyerLogin();
+
+  /*ne pas afficher logout sur la page de connexion*/
+  const logLogout = document.querySelector(".logLogout");
+  logLogout.style.display = "none";
 });
