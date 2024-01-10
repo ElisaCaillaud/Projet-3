@@ -9,10 +9,6 @@ async function getProjets(param) {
   var texte = "";
 
   for (let i = 0; i < data.length; i++) {
-    console.log(i);
-    console.log(data[i]["title"]);
-    console.log(data[i]["imageUrl"]);
-
     /*Afficher le tri directement + indiqué, on parcourt le tableau de l'API
     et on l'injecte dans le html avec une nouvelle balise*/
     if (param == data[i]["category"]["id"] || param == "0") {
@@ -37,10 +33,6 @@ async function getCategories() {
   var textSelect = "";
 
   for (let i = 0; i < data.length; i++) {
-    //console.log(i);
-    //console.log(data[i]["id"]);
-    //console.log(data[i]["name"]);
-
     /*Ajouter les categories*/
     textSelect += `
       <option value="${data[i]["id"]}">${data[i]["name"]}</option>
@@ -180,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /*affichage deuxieme modale et retour arriere avec fleche*/
   btnAjoutJS.addEventListener("click", function () {
-    //console.log("clique");
     afficherGalerieJS.style.display = "none";
     ajoutPhotoJS.style.display = "block";
     flecheRetour.style.display = "block";
@@ -269,13 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
         request.status === 201
           ? "Image ajoutée !"
           : `Erreur ${request.status} lors de la tentative de téléversement du fichier.<br />`;
-
-      /*if (request.status === 201) {
-        // Réinitialiser chaque champ du formulaire après l'envoi réussi
-        document.querySelector(".newPhoto").value = "";
-        document.querySelector("#titre").value = "";
-        document.querySelector("#categoryAddPhoto").value = "";
-      }*/
 
       /*Actualisation des images en dynamique lors de l'ajout*/
       getProjetsModal();
