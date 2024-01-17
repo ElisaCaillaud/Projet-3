@@ -1,3 +1,5 @@
+var lienAPI = "http://localhost:5678/api/";
+
 // Fonction asynchrone pour Login
 async function ajoutListenerEnvoyerLogin() {
   //sélection du formulaire
@@ -17,7 +19,7 @@ async function ajoutListenerEnvoyerLogin() {
     const loginJson = JSON.stringify(login);
 
     /*requete serveur*/
-    const response = await fetch("http://localhost:5678/api/users/login", {
+    const response = await fetch(`${lienAPI}users/login`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: loginJson,

@@ -1,7 +1,9 @@
 /*****Affichage des projets dynamique, parcourt tableau avec les données 
  et concaténation des données dans nouvelles balises html*******/
+var lienAPI = "http://localhost:5678/api/";
+
 async function getProjets(param) {
-  const response = await fetch(`http://localhost:5678/api/works`);
+  const response = await fetch(`${lienAPI}works`);
   const data = await response.json();
 
   var gallery = document.querySelector(".gallery");
@@ -26,7 +28,7 @@ async function getProjets(param) {
 
 /*****Affichage des catégories dans la liste deroulante de la modal ajoutPhoto*****/
 async function getCategories() {
-  const response = await fetch(`http://localhost:5678/api/categories`);
+  const response = await fetch(`${lienAPI}categories`);
   const data = await response.json();
 
   var select = document.querySelector("#categoryAddPhoto");
@@ -44,7 +46,7 @@ async function getCategories() {
 
 /*****Affichage des projets dynamiques SUR LA MODAL*****/
 async function getProjetsModal() {
-  const response = await fetch(`http://localhost:5678/api/works`);
+  const response = await fetch(`${lienAPI}works`);
   const data = await response.json();
 
   var gallery = document.querySelector(".galleryModal");
@@ -74,7 +76,7 @@ async function deleteProject(id) {
     "Content-Type": "application/json",
   };
   /*Suppression*/
-  await fetch(`http://localhost:5678/api/works/${id}`, {
+  await fetch(`${lienAPI}works/${id}`, {
     method: "DELETE",
     headers: headers,
   });
@@ -253,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const request = new XMLHttpRequest();
 
     /*Mise en place du POST + lien vers API + Verification token*/
-    request.open("POST", "http://localhost:5678/api/works", true);
+    request.open("POST", `${lienAPI}works`, true);
     request.setRequestHeader("Authorization", `Bearer ${token}`);
     request.onload = (event) => {
       output.innerHTML =
