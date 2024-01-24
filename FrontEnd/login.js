@@ -18,7 +18,7 @@ async function ajoutListenerEnvoyerLogin() {
     /*transformation en JSON*/
     const loginJson = JSON.stringify(login);
 
-    /*requete serveur*/
+    /*requete serveur, ajout du headers et du body pour envoyer les données*/
     const response = await fetch(`${lienAPI}users/login`, {
       method: "POST",
       headers: { "Content-type": "application/json" },

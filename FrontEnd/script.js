@@ -91,13 +91,19 @@ function checkAuthentification() {
   const loginJsHome = document.querySelector(".homeLogin");
   const logoutJsHome = document.querySelector(".homeLogout");
   const modifBtn = document.querySelector(".modif");
+  const filtresBtn = document.querySelector(".button-filter");
+  const bandeNoire = document.querySelector(".bandeNoire");
 
   /*si le token est ok, on affiche les boutons*/
   if (token) {
+    bandeNoire.style.display = "flex";
+    filtresBtn.style.display = "none";
     modifBtn.style.display = "flex";
     loginJsHome.style.display = "none";
     logoutJsHome.style.display = "inline";
   } else {
+    bandeNoire.style.display = "none";
+    filtresBtn.style.display = "flex";
     modifBtn.style.display = "none";
     loginJsHome.style.display = "inline";
     logoutJsHome.style.display = "none";
@@ -215,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  /******Ajout nouveau projet modale*****/
+  /***********Ajout nouveau projet modale************/
   var ajoutFormPhotoJs = document.querySelector(".ajoutPhotoForm");
 
   /*Evenement au submit du formulaire*/

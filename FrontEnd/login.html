@@ -15,46 +15,48 @@
     <script defer src="login.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>
-        <ul>
-          <li>projets</li>
-          <li>contact</li>
-          <li><a href="login.html" class="logLogin">login</a></li>
-          <li><a href="#" class="logLogout">logout</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
-        </ul>
-      </nav>
-    </header>
-    <div class="centerDiv">
-      <section id="login">
-        <h1 id="textLogIn">Log In</h1>
-        <form action="#" method="post" class="formConnexion">
-          <label for="email"><b>E-mail</b></label>
-          <input type="email" id="email" required />
-          <label for="password"><b>Mot de passe</b></label>
-          <input type="password" id="password" required />
-          <button type="submit" class="buttonConnexion">Se connecter</button>
-          <p><a href="#">Mot de passe oublié ?</a></p>
-        </form>
-        <div id="errorText404">
-          <p>Votre compte n'existe pas.</p>
-        </div>
-        <div id="errorText401">
-          <p>Mot de passe incorrect.</p>
-        </div>
-        <div id="errorText">
-          <p>Un problème est survenu, veuillez réessayer.</p>
-        </div>
-      </section>
+    <div class="main-container">
+      <header>
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+          <ul>
+            <li>projets</li>
+            <li>contact</li>
+            <li><a href="login.html" class="logLogin">login</a></li>
+            <li><a href="#" class="logLogout">logout</a></li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="centerDiv">
+        <section id="login">
+          <h1 id="textLogIn">Log In</h1>
+          <form action="#" method="post" class="formConnexion">
+            <label for="email"><b>E-mail</b></label>
+            <input type="email" id="email" required />
+            <label for="password"><b>Mot de passe</b></label>
+            <input type="password" id="password" required />
+            <button type="submit" class="buttonConnexion">Se connecter</button>
+            <p><a href="#">Mot de passe oublié ?</a></p>
+          </form>
+          <div id="errorText404">
+            <p>Votre compte n'existe pas.</p>
+          </div>
+          <div id="errorText401">
+            <p>Mot de passe incorrect.</p>
+          </div>
+          <div id="errorText">
+            <p>Un problème est survenu, veuillez réessayer.</p>
+          </div>
+        </section>
+      </div>
+      <footer id="footerLogin">
+        <nav>
+          <ul>
+            <li id="mentionLegale">Mentions Légales</li>
+          </ul>
+        </nav>
+      </footer>
     </div>
-    <footer id="footerLogin">
-      <nav>
-        <ul>
-          <li id="mentionLegale">Mentions Légales</li>
-        </ul>
-      </nav>
-    </footer>
   </body>
 </html>
